@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js"></script>
+        <script>
+            $(function(){
+              var timer = null ;
+              
+              function pad(x) {
+                  if ( x < 10 ) return "0" + x ; 
+                  return x ;
+              }
+              $("#clock").click(function(){
+                 if ( timer !== null ) {
+                     window.clearInterval(timer) ;
+                     timer = null ;
+                 }  else {
+                     timer = window.setInterval(function() {
+                        var ms = parseInt($("#ms").text()) ;
+                        var sec = parseInt($("#sec").text()) ;
+                        var min = parseInt($("#min").text()) ;
+                        ms++;
+                        if ( ms == 100) {
+                            ms = 0 ;
+                            sec++;
+                        }
+
+                        if ( sec == 60) {
+                            sec = 0 ;
+                            min++;
+                        }
+                        $("#ms").text(pad(ms)) ;
+                        $("#sec").text(pad(sec)) ;
+                        $("#min").text(pad(min)) ;
+                     }, 10) ;
+                    }
+              }).contextmenu(function(e){
+                   if ( timer !== null ) {
+                     window.clearInterval(timer) ;
+                     timer = null ;
+                   }
+                   $("#clock span").text("00") ;
+                   e.preventDefault();
+              });
+              
+			  // to prevent text selection
+              $("div").on("mousedown", function(e){ e.preventDefault(); })
+        
+            });
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Nova+Mono');
+            body { font-family : 'Nova Mono'}
+            div#clock { font-size: 50px; border: 2px dashed #999; 
+                        border-radius: 10px; padding:10px; 
+                        width:180px; margin: 20px auto;
+                        cursor: pointer;
+            }
+            #clock:hover { background: #99ff99;}
+            #min, #sec { font-size: 50px;}
+            #ms { font-size: 20px ; margin-left: 15px; color : green;}
+            p { text-align: center;}
+            b { color : blue;}
+        </style>
+    </head>
+    <body>
+        <div id="clock"><span id="min">00</span>:<span id="sec">00</span><span id="ms">00</span></div>
+        <p><b>Left Mouse Click on Timer:</b> start/pause timer  <b>Right Mouse Click on Timer:</b> reset the timer</p>
+    </body>
+</html>

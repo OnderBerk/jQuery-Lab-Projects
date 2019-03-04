@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #box { width:300px; height: 200px; border:2px solid black ;
+                   text-align: center; background: #FF9; margin: 30px auto;
+                   line-height: 200px;
+                   position: relative;  /* use non-static(relative, fixed, absolute) position to move objects */
+            }
+            div { text-align: center;}
+                
+        </style>
+        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script>
+            $(function(){
+                // Init function is called when the page is loaded completely
+                $("#btn").click(function(){
+				     $(this).remove() ;  // this is last step
+                    //$("#box").slideUp(1000).delay(1000).slideDown(500) ;
+                     $("#box").animate({'font-size' : '80px' }, 1000)
+                             .animate({width : 200})
+                             .animate({left: $(window).width() + 10}, 1000)
+                             .animate( {left : 0 }, 1500, function(){
+								 $("body").css("background", "#9f9") ;
+								 $(this).html("END");
+                     });    
+                 })
+        
+        
+            });
+            
+        </script>
+    </head>
+    <body>
+        <div id="box">BOX</div>
+        <div>
+            <input type="button" value="animate" id="btn" >
+        </div>
+    </body>
+</html>

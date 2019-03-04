@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+    #panel {
+      display: inline-block;
+      font: 40px/60px arial ;
+      padding: 20px 30px;
+      border:1px solid black;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+	<p>Check out the source code</p>
+    <button id="btnAnimate">Animate</button>
+    <button id="btnStop">Stop</button>
+    <br /><br />
+    <div id="panel">START</div>
+    <script>
+       $(function() {
+          $("#panel").hide(); // saves the current display value (inline-block in this example) and set "display" to "none"
+
+          $("#btnAnimate").click(function(){
+            // $("#panel").show() ;  // immediate, no animation effect,.css("display", "inline-block")
+             // $("#panel").show(2000) ;  // it becomes animation effect, "slow", "fast", or milisecond, puts into the animation queue
+             // $("#panel").show(100).delay(1000).hide(500); // three effects in the queue
+
+              // $("#panel").show().delay(1000).hide(); // does not work, only delay(1000) in the queue, show() and hide()are immediate.
+              // $("#panel").show(0).delay(1000).hide(0); // it works (a hack), three animations in the queue.
+
+             
+             // $("#panel").fadeIn(1000).delay(1000).fadeOut(500);
+             // $("#panel").slideDown(1000).delay(1000).slideUp(1000);
+             // $("#panel").fadeIn(1000).delay(1000).slideUp(1000);
+
+              // $("#panel").animate({ width : '200px'}, 1000) ;
+              // $("#panel").animate({ width : '+=200px', left : '200px'}, 1000) ; // no position change
+              // $("#panel").css("position", "absolute").animate({ width : '+=200px', left : '200px'}, 1000) ; // it works since its "position" is not static any more.
+
+              // $("#panel").animate({width : "500px"}, 3000).html("FINISH"); // it does not work, html() does not wait animation. (async)
+            /*  $("#panel").animate({width : "500px"}, 3000, function(){
+                  $(this).html("FINISH") ;
+              }) ; // use callback function to start an action after the animation. */
+
+              $("#panel").fadeIn(2000, function(){console.log('fadeIn finished')})
+                         .delay(2000)
+                         .fadeOut(1000, function() {console.log('animation is over')}) ;
+
+
+
+
+
+
+          });
+
+          $("#btnStop").click(function(){
+             // $("#panel").stop();  // stops the current animation and move on to next one.
+             $("#panel").stop(true); // deletes further animations
+          }) ;
+
+       });
+    </script>
+</body>
+</html>

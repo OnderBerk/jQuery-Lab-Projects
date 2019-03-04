@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+        <style>
+            /* Initial Page Appearance */
+            li { list-style: none; }
+            .italic { font-style:italic; color: red;}
+            #moveBtn { display: none;}
+        </style>
+    </head>
+    <body>
+        <input type="button" value="Click Here" id="btn">
+        <input type="button" value="Click to Move Mario" id="moveBtn" >
+        <h1 id="mainTopic">jQuery API</h1>
+        <h2>Table of Content</h2>
+        <ul id="toc">
+            <li>Accessing</li>
+            <li>HTML Content</li>
+            <li>Form Element Content</li>
+            <li>Image Content</li>
+            <li>Style</li>
+            <li>Behavior</li>
+        </ul>
+        <div>
+            <input type="text" value="CONTENT"><br><br>
+            <img src="img/css3.jpg">
+            <h1 class="titleH1">ACCESSING</h1>
+            <p>This is the <span>first</span> step when developing a DHTML</p>
+            <p>This is the last paragraph</p>
+            
+        </div>
+        <script>
+            
+            $(function() {
+                // Init Function
+                $("#btn").click(changePage) ;
+            })
+            
+            function changePage() {
+                // HOW TO ACCESS and MODIFY DOM OBJECTS
+                // Using jQuery
+                // 
+                //                           
+                // Accessing DOM object with its "id"
+
+                $("#mainTopic").prepend("NEW ").css({'font-style': 'italic', 'color':'#55F'}) ;
+                $("#moveBtn").css("display", "inline").click(function() {
+                   var pos =  $("#mario").offset();
+                   pos.left += 4 ;
+                   $("#mario").offset(pos);
+                }).after("<img src='img/mario.png' width='40' id='mario'>") ;
+                
+                $("#btn").css("display", "none") ;
+                
+
+                 // Accessing all objects having the same type
+
+                 $("li").css('color' , 'green').append(' - list item') ;
+
+
+                 $("div p").addClass("italic");
+
+
+                 // Accessing objects with CSS selectors.
+
+                 $("div p span").css({'font-weight':'bold', 'background-color': 'yellow'}) ;
+
+
+                 // Access image object and change its content
+                $("div > img:first").attr("src", "img/html5.png");
+
+                // set/get form elements
+                var content = $("div input").val() ;
+                content = "NEW " + content ;
+                $("div input").val(content) ;
+
+                // Add new object.
+                $("<h2>Sub-Heading from jQuery</h2>").insertAfter("#mainTopic") ;
+
+                // Delete an object.
+                $("div p:last").remove();
+        }
+             
+        </script>
+    </body>
+</html>

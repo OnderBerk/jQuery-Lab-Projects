@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+ Events : keydown, keyup, keypress, select, copy, paste
+ Event Concepts : preventDefault(), stopPropagation()
+ Functions: String.fromCharCode( integer )
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <link href="mystyle.css" rel="stylesheet" type="text/css"/>
+        <style>
+            #warning { display: none; color: red; }
+        </style>
+		
+		<script src="keyboard.js" type="text/javascript"></script>
+       
+    </head>
+    <body>
+        <div class="well">
+            <h3>Keyboard Events</h3>
+        </div>
+        <div class="well">
+            <h3>Smart Textbox</h3>
+            <div class="section">
+                <input type="text" id="stdID" size="60" placeholder="Only digits are allowed"><br><br>
+                <span id="warning"></span>
+            </div>
+        </div>
+        <div class="well album_plugin">
+            <img src="img/car1.jpg" >
+            <img src="img/car2.jpg" >
+            <img src="img/car3.jpg" >
+            <img src="img/car4.jpg" >
+        </div>
+    </body>
+</html>

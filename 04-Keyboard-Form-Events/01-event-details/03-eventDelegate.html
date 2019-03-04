@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <style>
+            .btn { padding: 6px 12px; border:1px solid #2e6da4; 
+                   background: #337ab7; display:inline-block;
+                   font-size: 14px; color: #FFF; text-align: center; 
+                   cursor: pointer; border-radius: 4px;
+                   margin-left: 5px; margin-right: 5px;
+            }
+            h1 { text-align: center; margin-bottom: 40px}
+            #btnGroup { text-align: center; padding: 10px; background: #DDD;}
+            #panel { text-align: center; margin-top: 40px;}
+        </style>
+        <script>
+            $(function() {
+                // event handler is bound to current div.btn elements
+                // This is static binding of event handlers.
+                /* $("div.btn").click(function() {
+                     $("#panel").html( $(this).html() + " clicked.");
+                 }) ; */
+                 var id = 1 ;
+                 $("#btnAdd").click(function() {
+                     $("#btnGroup").append("<div class='btn'>New Button (" + id + ")</div>"); 
+					 id++;
+                 });
+                 // for any click on #btnGroup (parent of all .btn), 
+                 // it checks if the event.target matches "btn" class
+                 // if it is so, it calls the event handler. 
+                 // This is called event delegate
+                 $("#btnGroup").on("click", ".btn", function() {
+                     $("#panel").html( $(this).html() + " clicked.");
+                 });
+            });
+            
+        </script>
+    </head>
+    <body>
+        <h1>Event Delegate <span class='btn' id='btnAdd'>Add new Button</span></h1>
+        <div id='btnGroup'>
+            <div class='btn'>Button 1</div>
+            <div class='btn'>Button 2</div>
+            <div class='btn'>Button 3</div>
+        </div>
+        <div id='panel'></div>
+		<div>Check out source code</div>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+        <style>
+            #box { width:200px; height: 150px; border:2px solid black;
+                   text-align: center; background: #FF9; margin: 30px auto;
+                   position: relative; padding:1px;
+            }
+			#box div { padding: 10px; width: 50px;background: #000; color: #9F9; margin: 50px 60px; }
+            div, h1 { text-align: center;}
+            ol { padding: 10px; border-top: 2px solid black; margin: 30px auto; width: 300px;}
+        </style>
+        <script>
+            $(function() {
+                 // Init function
+                $("#box").click(function() {
+                    $("ol#panel").append("<li>Event : Click</li>") ;
+                }).contextmenu(function(e){
+                    $("ol#panel").append("<li>Event : ContextMenu</li>") ;
+                    e.preventDefault() ;
+                }).mouseenter(function(){
+                    $("ol#panel").append("<li>Event : Enter</li>") ;
+					$(this).css("background", "#F99") ;
+                }).mouseleave(function(){
+                    $("ol#panel").append("<li>Event : Leave</li>") ;
+					$(this).css("background", "#FF9") ;
+                }).mousemove(function(e){
+					var posBox = $(this).offset() ;
+					var realOffset = { top: Math.round(e.pageY - posBox.top), left : Math.round(e.pageX - posBox.left) } ;
+					// offsetX and offsetY is used to get coordinate relative to parent.
+					// pageX and pageY return the coordinate relative to document.
+                    $("#coord span").html("Relative to Doc : (" + e.pageX + " : " + e.pageY + ") Relative to #box : (" + realOffset.left + " : " + realOffset.top + ")") ;
+                }).mousedown(function(e){
+                    $("ol#panel").append("<li>Event : Mouse Down " + e.which + "</li>") ;
+                }).mouseup(function(e){
+                    $("ol#panel").append("<li>Event : Mouse Up " + e.which + "</li>") ;
+                    if ( e.which == 2) {
+                        $(this).animate({left : 1000}, 500)
+                                .animate( {left : 0}, 1000)
+                                .fadeOut(1000);
+                    }
+                })		;
+				
+				$("#btnRemove").one("click", function() { 
+				   $("#box").off("mousemove") ;
+				   $(this).remove();
+				   $("#coord").hide();
+				}) ;
+				
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Mouse Events</h1>
+		<div>
+		  <button id="btnRemove">Remove Move Handler</button>
+		</div>
+        <div id="box"><div>BOX</div></div>
+        <div id="coord">Coord : <span></span></div>
+        <ol id="panel"></ol>
+    </body>
+</html>

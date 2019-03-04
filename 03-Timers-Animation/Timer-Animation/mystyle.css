@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 1, 2017, 3:14:38 PM
+    Author     : Serkan GENÇ
+*/
+
+ body { font-family: helvetica ;}
+.well {
+    width: 50%; border: 1px solid #999; background: #ddd; padding: 40px;
+    text-align: center; margin: 30px auto;
+}
+.well h3 { font-size: 34px; margin: 10px; }
+.section {
+    border:1px solid #0F0; background: #AFA; text-align: center;
+    margin: 20px; padding: 10px;
+}
+.btn { padding: 6px 12px; border:1px solid #2e6da4; background: #337ab7; display:inline-block;
+      font-size: 14px; color: #FFF; text-align: center; cursor: pointer; border-radius: 4px;
+  }

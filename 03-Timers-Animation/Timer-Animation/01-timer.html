@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <link href="mystyle.css" rel="stylesheet" type="text/css"/>
+        <style>
+            #counter { font-size: 30px; margin-top: 20px;}
+            #arena { height: 100px; }
+            #photo { width: 80%;}
+            #info { position:relative;}
+            #ball { position:relative; top: 15px;}
+        </style>
+         
+	<script src="timer.js" type="text/javascript"></script> 
+       
+    </head>
+    <body>
+        <div class="well">
+            <h3>Counter</h3>
+            <img src="img/pause.png" id="icon">
+            <div id="counter">0</div>
+        </div>
+        
+        <div class="well">
+            <h3>Slide Show</h3>
+            <div class="section" id="album">
+                <div class="album_photo">
+                    <img src="img/car1.jpg">
+                    <span class="car_speed">350</span>
+                    <span class="car_price">250000</span>
+                </div>
+                <div class="album_photo">
+                    <img src="img/car2.jpg">
+                    <span class="car_speed">320</span>
+                    <span class="car_price">275000</span>
+                </div>
+                <div class="album_photo">
+                    <img src="img/car3.jpg">
+                    <span class="car_speed">290</span>
+                    <span class="car_price">155000</span>
+                </div>
+                <div class="album_photo">
+                    <img src="img/car4.jpg">
+                    <span class="car_speed">345</span>
+                    <span class="car_price">2890000</span>
+                </div>
+               
+            </div>
+        </div>
+        
+        <div class="well">
+            <h3>Animation</h3>
+            <div class="btn" id="start">Start</div>
+            <div class="section" id="arena">
+                <img src="img/basket.ico" width="76" id="ball">
+            </div>
+        </div>
+    </body>
+</html>

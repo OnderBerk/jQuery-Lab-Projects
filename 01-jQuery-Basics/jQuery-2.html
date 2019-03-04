@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+        <style>
+            table { margin: 30px auto;}
+            td { width : 200px; height: 200px; text-align: center;
+               border:1px solid black;
+            }
+            td:hover { background: #CCC;}
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td id="c1">
+                    <img src="img/bn.png"><br>
+                    Cell #1<br>
+                    <img src="img/bn.png">
+                </td>
+                <td id="c2">
+                    <img src="img/bn.png"><br>
+                    Cell #2<br>
+                    <img src="img/bn.png">
+                </td>
+                <td id="c3">
+                    <img src="img/bn.png"><br>
+                    Cell #3<br>
+                    <img src="img/bn.png">
+                </td>
+            </tr>
+        </table>
+        <script>
+            $("td").click(function() {
+               
+                // "this" shows the DOM <td> object the user clicked on
+                // $(this) converts DOM object to jQuery object to extend its capabilities
+                /* $(this).css("background", "#999");
+                var id = $(this).attr("id") ;
+                $("#" + id + " img:first").attr("src", "img/wr.png"); */
+                
+                $(this).children("img").first().attr("src", "img/wr.png");
+            });
+        </script>
+    </body>
+</html>

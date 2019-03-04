@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+            .btn { padding: 6px 12px; border:1px solid #2e6da4; 
+                   background: #337ab7; display:inline-block;
+                   font-size: 14px; color: #FFF; text-align: center; 
+                   cursor: pointer; border-radius: 4px;
+                   margin-left: 5px; margin-right: 5px;
+            }
+        </style>
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <script>
+         $(function() {
+		    
+			
+		    	 
+			$(document).click(function(e) {
+                $("body").css("background", "white") ;
+				$("#panel").append("<span>Document clicked. target: " + e.target.id + "</span> <br>");
+				           
+				
+			})
+               
+		   $("#red").click(function(e) {
+			   $("body").css("background" ,"#F99") ;
+			   $("#panel").append("<span>Red clicked. target: " + e.target.id + "</span> <br>");
+			   e.stopPropagation();  // Stop propagating click event to the parent
+		   }) ;
+		   
+		   $("#green").click(function(e) {
+			   $("body").css("background" ,"#9F9") ;
+			   $("#panel").append("<span>Green clicked. target: " + e.target.id + "</span> <br>");
+			   e.stopPropagation(); // Stop propagating click event to the parent
+		   }) ;
+		   
+		   
+        });
+        </script>
+        <style>
+		    div { text-align: center }
+            #red { width: 200px; height: 100px; 
+                   border:1px solid black; background: #F99; padding: 50px; 
+                    margin: 30px auto;
+            }
+            #green { background: #9F9; border:1px solid black; height: 50px; 
+                     line-height: 50px;  margin: 20px;
+            }
+            h1 { text-align: center;}
+			#panel { text-align: center; margin-top: 20px; }
+        </style>
+    </head>
+    <body id="body">
+        <h1>Event Propagation</h1>
+        <div id="red">
+            RED
+            <div id="green">GREEN</div>
+        </div>
+		 <div id="panel"></div>
+		
+    </body>
+</html>
+

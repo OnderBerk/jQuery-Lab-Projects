@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <script src="formEvents.js" type="text/javascript"></script>
+        <link href="mystyle.css" rel="stylesheet" type="text/css"/>
+        <style>
+           #bar {
+                position: fixed; top:0; left:0; width:100%; background: #000;
+                color: white; height: 50px; line-height: 50px; opacity: 0.6;
+                display: none; text-align: center; 
+            }
+
+            #top {
+                width: 100px; height: 40px; line-height: 40px; margin: 20px auto;
+                background: #000; opacity: 0.8 ; color: white; text-align: center;
+                cursor: pointer;
+            }
+            #top:hover { opacity: 1.0; }
+
+            #error { display:none; color:red; font-size: 12px;}
+        </style>
+    </head>
+    <body>
+        <div id="bar">TOOLBAR</div>
+        
+        <div class="well" id="listBoxWell">
+            <h3>Listbox Events</h3>
+            <select id="flowerList">
+                <option value="begonia.jpg">Begonia</option>
+                <option value="lily.jpg">Lily</option>
+                <option value="tulip.jpg">Tulip</option>
+            </select><br><br>
+        </div>
+        
+        <div class="well">
+            <h3>Validation (Numeric)</h3>
+            <input type="text" id="textbox"><br><span id="error">Invalid Input</span>
+            <p id="textResult"></p>
+        </div>
+        
+        <div class="well">
+            <h3>Checkbox and Radio Button</h3>
+            <div class="section">
+                <label for="smoking">Smoking : </label>
+                <input type="checkbox" id="smoking">
+                <span id="checkText">No</span>
+            </div>
+            <div class="section">
+                Favorite Phone Brand : 
+                <input type="radio" name="phone" value="iPhone"> iPhone
+                <input type="radio" name="phone" value="S8"> S8
+                <input type="radio" name="phone" value="M6"> Xiamoi M6
+                <p id="phoneText"></p>
+            </div>
+        </div>
+        <div class="well" style="height: 500px">
+            <h3>Click TOP Button </h3>
+            <img src="img/godown.png"><br><br>
+        </div>
+        <div id="top">TOP</div>
+    </body>
+</html>

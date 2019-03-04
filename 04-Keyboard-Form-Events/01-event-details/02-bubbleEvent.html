@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <style>
+            body { font-size: 16px; }
+			/* PROBLEM #1 */
+			#container { width: 200px; height: 150px; background: #F9F;}
+            #external { position: absolute; top: 80px; left:250px ; width: 50px; height: 50px; background: #9F9;}
+			
+			/* PROBLEM #2 */
+            #panel { width: 100px; height: 100px; background: #F99;}
+            #child2 { position:absolute; top: 300px; left: 500px; background: #9F9; padding: 10px; }
+            #child1 { padding: 10px; background: #999; margin: 10px;}
+            
+        </style>
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <script>
+            $(function(){
+                // Test Parent-Child Events
+                $("#container").click(function(){
+                    alert("container clicked");
+                });
+                
+                $("#external").click(function() {
+                   alert("external clicked"); 
+                });
+				
+				// Init function
+                $("#panel").mousemove(function(e){
+                   var pos = $(this).offset() ;
+                   var right = pos.left + $(this).width() ;
+                   var bottom = pos.top + $(this).height() ;
+                   if ( e.pageX >= pos.left && e.pageX <= right && 
+                        e.pageY >= pos.top && e.pageY <= bottom) {
+                      $("p span").text(e.pageX + ":" + e.pageY) ; 
+                   }
+                });
+                
+            }) ;
+        </script>
+    </head>
+    <body>
+        
+		
+        <div id="container">CONTAINER</div>
+        <div id="external">EX</div>
+		
+		<br><br><hr>
+		<p>Coord: <span></span></p>
+		<div id="panel">
+            <div id="child1">CHILD AREA #1</div>
+            <div id="child2">CHILD AREA #2</div>
+        </div>
+    </body>
+</html>
