@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <style>
+        .bar {
+            position: absolute;
+            top: 100px;
+            background: #66F;
+            border:1px solid black ;
+            width: 10px; height: 20px;
+        }
+        #current {
+            position: absolute;
+            top: 50px; left: 230px ;
+            font-size: 40px;
+          
+        }
+    </style>
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script>
+        $(function(){
+           var current = -1, pick;
+           setInterval(function(){
+               // select random bar.
+               do {
+                   pick = Math.floor(Math.random() * 10) ;
+               } while( pick === current) ;
+               current = pick;
+               
+               $("#current").html(current);
+               var rndHeight = Math.floor(Math.random() * 41) + 60 ;
+               $("#" + pick)
+                     .css("background", "red")
+                     .animate({height : rndHeight}, 400)
+                     .animate({height : 20}, 400 , function(){
+                         $(this).css("background", "#66F");
+               }) ;
+           }, 1000)
+       
+          });
+    </script>
+  </head>
+  <body>
+      <div id="current"></div>
+      <script>
+          for ( var i=0 ; i<10; i++){
+              var divStr = "<div class='bar' style='left:" + (100 + i * 30) + "px' id='" + i + "'></div>" ;
+              document.write(divStr) ;
+          }
+      </script>
+  </body>
+</html>

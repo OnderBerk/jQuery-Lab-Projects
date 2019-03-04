@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <!-- Lightbox Plugin -->   
+        <link href="lightbox/css/lightbox.min.css" rel="stylesheet" type="text/css"/>
+        <script src="lightbox/js/lightbox.min.js" type="text/javascript"></script>
+        
+        <!-- Highlight Plugin -->
+        <link href="highlight/themes/sunlight.default.css" rel="stylesheet" type="text/css"/>
+        <link href="highlight/themes/sunlight.dark.css" rel="stylesheet" type="text/css"/>
+        <script src="highlight/sunlight-min.js" type="text/javascript"></script>
+        
+        <script src="highlight/lang/sunlight.php-min.js" type="text/javascript"></script>
+        <script src="highlight/lang/sunlight.mysql-min.js" type="text/javascript"></script>
+        
+        <!-- QTip Plugin -->
+        <link href="qtip/jquery.qtip.min.css" rel="stylesheet" type="text/css"/>
+        <script src="qtip/jquery.qtip.min.js" type="text/javascript"></script>
+        <style>
+            #album img {
+                width: 100px;
+                margin-right: 50px;
+            }
+            h1, h2, #album { text-align: center;}
+             a { text-decoration: none;}
+        </style>
+        <script>
+            $(function() {
+                // Apply syntax highlight plugin for php code.
+                Sunlight.highlightAll();
+                
+                $("h1 span").qtip({
+                    content : {
+                        text : "It shows images in the same page",
+                        title: "Lightbox Plugin"
+                    }
+                }); 
+               
+                
+                $("#album img:first").qtip({
+                    content : {
+                        text : "Anıtkabir",
+                        title: "Places in Ankara"
+                    }
+                });
+                
+            }) ;
+            
+        </script>
+    </head>
+    <body>
+        <h1><span>Light Box</span> Plugin</h1>
+        <h2>Album</h2>
+        <div id="album">
+            <a  href="img/anıtkabir.jpg" data-lightbox="ankara-album" data-title="Anıtkabir">
+                <img src="img/anıtkabir.jpg" >
+            </a>
+            
+            <a  href="img/atakule.jpg" data-lightbox="ankara-album" data-title="Atakule">
+                <img src="img/atakule.jpg" >
+            </a>
+            
+            <a  href="img/kızılay.jpg" data-lightbox="ankara-album" data-title="Hitit Güneşi">
+                <img src="img/kızılay.jpg" >
+            </a>
+        </div>
+        
+        <div>
+            <h1>Syntax Highlight Plugin</h1>
+           <pre class="sunlight-highlight-php">
+&lt;?php
+    //a PHP string with embedded MySQL query; note how the MySql is highlighted
+    $query = '<code class="sunlight-highlight-mysql">
+        SELECT
+            u.username,
+            u.user_password AS `secret`,
+            p.latitude AS `coordinates`,
+            LENGTH(p.geoid)
+        FROM users u
+        INNER JOIN places p
+            ON p.id = u.place_id
+        WHERE u.id &gt; 10</code>';
+        
+    print_r($query);
+?&gt;</pre>
+            
+        </div>
+    </body>
+</html>

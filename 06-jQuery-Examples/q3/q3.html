@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script>
+        $(function(){
+		    var current = 1 ; 
+            $("#container").mousemove(function(e){
+				// container properties (position and width)
+				cPos = $(this).offset() ;
+				cWidth = $(this).width() ;  // 600px
+				widthLeft = e.pageX - cPos.left ;
+				widthRight = cWidth - widthLeft ;
+				$("#left").width(widthLeft) ;
+				$("#right").width(widthRight).css( {left : widthLeft }) ;
+				$("#bar").css( { left : widthLeft - 1 }) ;
+		
+            });
+			
+			// Tab key is used to change the scene.
+			$(window).keydown(function(e){
+			  // Tab key's keyCode is 9
+			  if ( e.keyCode === 9 ) {
+			    current += 2 ;
+				if ( current > 6 ) current = 1 ;
+			    $("#left").css("background-image" , "url( images/" + current + ".jpg)") ;
+			    $("#right").css("background-image" , "url( images/" + (current + 1 ) + ".jpg)") ;
+				e.preventDefault();  // ignore default action for TAB key.
+			  }
+			});
+        });
+    </script>
+    <style>
+        #container {
+            width: 600px; height:255px;
+            position:relative ;
+            margin: 80px auto;
+            background: #DDD;
+			overflow: hidden ;
+        }
+		#container:hover { cursor : col-resize; }
+        #left {
+            position: absolute;
+            top:0; left:0 ;
+            width: 200px;
+            height: 255px;
+            background: url( images/1.jpg) ; 
+      }
+        #right {
+            position: absolute;
+            top:0; left:200px ;
+            width: 400px;
+            height: 255px;
+            background: url( images/2.jpg) right ;
+        }
+        #bar {
+            width: 3px; height: 255px;
+            position: absolute;
+            top:0; left: 199px;
+            background: black;
+        }
+		p { text-align : center; }
+	</style>
+  </head>
+  <body>
+      <p>Press <b>TAB</b> key to change the scene</p>
+      <div id="container">
+          <div id="left"></div>
+          <div id="right"></div>
+          <div id="bar"></div>
+      </div>
+  </body>
+</html>

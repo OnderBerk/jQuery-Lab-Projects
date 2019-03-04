@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Atomic+Age');
+        
+        html, body {margin:0; padding: 0 ; font-family : "Atomic Age"; }
+        .box {
+            float: left;
+            margin-left: 50px;
+            width: 110px;
+            height: 110px;
+            border: 1px solid black ;
+            background-color: #ddd ;
+            text-align: center;
+            position: relative;
+            transition: all ease 0.5s ;
+			
+        }
+        
+		.box:hover { background-color: #bbb; cursor: pointer ;}
+		
+		/* to give higher priority, make .white-bg more specific, otherwise .box:hover will be dominanat */
+		#container div.white-bg { background-color: #fff; }
+       
+        
+        #container { margin: 50px auto; width: 900px; }
+	     
+        h1 { text-align: center ; }
+        div#result { text-align: center; font: italic 46px courier; margin-top : 50px;}
+        
+        #cover {
+            position: fixed ;
+            top:0; left:0; right: 0; bottom:0 ;
+            background : black; opacity: 0.6;
+            z-index: 1 ;
+        }
+        
+        #startBtn {
+            position: relative;
+            width: 400px; height: 200px; line-height: 200px;
+            font-size : 64px ;
+            margin: 50px auto;
+            background: #ddd;
+            text-align: center;
+            z-index: 2 ;
+			cursor: pointer ;
+			border-radius: 8px;
+			box-shadow: 18px 22px 5px 0px rgba(0,0,0,0.75);
+        }
+        
+		
+		
+        #startBtn:hover {
+            background: #ff9;
+        }
+        
+        #tip {
+            text-align:center; color: green; font-size: 26px; display: none;
+        }
+    </style>
+    <script src="jquery-2.1.4.js"></script>
+    <script>
+        $( function() {
+            
+            function startGame() {
+                var rnd = Math.floor( Math.random() * 5 ) ;
+                $(".box:eq(" + rnd + ")").addClass("gold") ; // mark the selected box
+                $("#cover").fadeOut(1000) ;
+				$("#startBtn").animate( { left : "-=400", opacity: 0},500, function(){
+                    $("#tip").fadeIn(300).delay(500).fadeOut(300);
+					
+                }) ;
+            }
+            
+            function resetGame() {
+                $("#result").html("");
+                $(".box").html("").removeClass("white-bg").removeClass('gold') ;  // empty all boxes 
+                $("#cover").fadeIn(500);
+                $("#startBtn").animate( {left: 0, opacity: 1}, 500) ;
+            }
+            
+            $("#startBtn").click(function() {
+                    startGame();
+                    $(".box").click( function() {
+					
+					        // if you set background color with css("background", "white"), it will break "hover" css
+							// since inline level is more dominant than hover pseudo-class
+                            $(".box").addClass("white-bg") ;
+                            $(".gold").html( "<img src='gold.png'>")
+                                      .children()
+                                      .css({position: 'relative', top:-150, opacity : 0})
+                                      .animate({top:5, opacity : 1}, 300);
+                            if ( $(this).hasClass('gold')) {
+                                $("#result").html("You Won").css("color", "green") ;
+                            } else {
+                                $("#result").html("You Lost").css("color", "red") ;
+                            }
+                            // remove click event
+                            $(".box").off("click") ;
+                            // call resetGame() after 1.5 seconds
+                            setTimeout(function(){
+                                resetGame();
+                            }, 1500) ;
+                   }) ; // .box click
+            }); // #startBtn click
+        }); // Init
+    </script>
+  </head>
+  <body>
+      <h1>Golden Cell Game</h1>
+	  
+      <div id="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div style="clear:both"></div>
+      </div>
+	  <div id="tip">Click on a Box</div>
+      <div id="result"></div>
+      
+      <!-- Layer -->
+      <div id="cover"></div>
+      <div id="startBtn">START</div>
+      
+      
+  </body>
+</html>
