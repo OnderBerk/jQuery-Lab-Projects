@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#change").click(function(){
+               if ( $("#panel").css("font-size") == "16px") {
+                   $("#panel").css("font-size", "30px");
+               } else {
+                   $("#panel").css("font-size", "16px");
+               }
+            });
+        }); 
+    </script>
+    <style type="text/css">
+        div, p { text-align: center; }
+        p { font-size: 16px; }
+    </style>
+  </head>
+  <body>
+      <div>
+          <input type="button" value="Change" id="change">
+          <p id="panel">TEXT</p>
+      </div>
+      
+  </body>
+</html>

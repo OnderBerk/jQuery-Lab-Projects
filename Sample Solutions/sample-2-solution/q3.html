@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script>
+        $(function(){
+            $("#container").mousemove(function(e){
+                containerPos = $(this).offset() ;
+                wLeft = e.pageX - containerPos.left ;
+                wRight = 600 - wLeft ;
+                $("#left").width(wLeft) ;
+                $("#right").width(wRight).css( {left : wLeft , 'background-position-x' : -wLeft}) ;
+                $("#bar").css( { left : wLeft - 1 }) ;
+            });
+            
+            $("#bar").mousemove(function(e){ e.stopPropagation(); });
+        });
+    </script>
+    <style>
+        #container {
+            width: 600px; height:255px;
+            position:relative ;
+            margin: 80px auto;
+            background: #DDD;
+        }
+        #left {
+            position: absolute;
+            top:0; left:0 ;
+            width: 200px;
+            height: 255px;
+            background: url(1.jpg) ;
+        }
+        
+        #right {
+            position: absolute;
+            top:0; left:200px ;
+            width: 400px;
+            height: 255px;
+            background: url(2.jpg) ;
+        }
+        #bar {
+            width: 3px; height: 255px;
+            position: absolute;
+            top:0; left: 199px;
+            background: black;
+        }
+        
+        
+    </style>
+  </head>
+  <body>
+      <div id="container">
+          <div id="left"></div>
+          <div id="right"></div>
+          <div id="bar"></div>
+      </div>
+  </body>
+</html>

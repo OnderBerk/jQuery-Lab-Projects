@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+           $(":button").click(function(){
+              var rnd = Math.floor( Math.random() * 3 ) ;
+              $("td").html("");
+              $("#c" + rnd).html("X");
+           }); 
+        });
+    </script>
+    <style type="text/css">
+        td { border:1px solid black; 
+             width:80px; height:60px; 
+             font-size:30px; 
+             padding: 5px; 
+             text-align: center;
+             font-family: arial ;
+        }
+        table { border-spacing: 10px;}
+        
+    </style>
+  </head>
+  <body>
+      <input type="button" value="Random Cell"><br><br>
+          <table>
+              <tr>
+                  <td id="c0"></td>
+                  <td id="c1"></td>
+                  <td id="c2"></td>
+              </tr>
+          </table>
+  </body>
+</html>

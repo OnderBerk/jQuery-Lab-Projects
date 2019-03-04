@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+           var current = -1   ;
+           $("div").click(function(){
+               if ( $(this).css('left') == "0px") {
+                   $(this).animate( {left: -130}, 500) ;
+               } else {
+                   current = $(this).attr("id") ;
+                   $("div").each(function(i){
+                       if ( current  !=  "c" + i) {
+                           $(this).animate( {left: -130}, 500) ;
+                       }
+                   });
+                   $(this).animate( {left: 0}, 500) ;
+               }
+           }) ;
+        });
+    </script>
+    <style type="text/css">
+        div { width: 150px; height: 50px; 
+              font: 28px/50px arial; position: absolute; left: -130px;
+              text-align: right; color:white; padding-right:10px; }
+        #c0 { position:absolute; top:50px;  background: red; }
+        #c1 { position:absolute; top:150px;  background: blue; }
+        #c2 { position:absolute; top:250px;  background: green; }
+    </style>
+  </head>
+  <body>
+      <div id="c0">1</div>  
+      <div id="c1">2</div>  
+      <div id="c2">3</div>  
+  </body>
+</html>

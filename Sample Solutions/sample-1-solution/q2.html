@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Q2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.1.1.js" type="text/javascript"></script>
+        <script>
+            $(function() {
+               var filePos = $("div:first").offset() ;
+               $("#submenu").offset({ left : filePos.left});
+                
+               $("div").click(function() {
+                   if ( $("#submenu").hasClass('open')) {
+                       $("#submenu").fadeOut(500).removeClass('open') ;
+                       $("p").html("");
+                   } else {
+                       $("#submenu").fadeIn(500).addClass('open') ;
+                   }
+               });
+               
+               $("div").hover(function(){
+                   $(this).css("background", "#BBB") ;
+               }, function(){
+                   if ( !$("#submenu").hasClass("open")) {
+                       $(this).css("background", "#FFF");
+                   }
+               }) ;
+               
+               $("#submenu li").click(function() {
+                   $("p").html( "Selected Menu Item : <b>" + $(this).html() + "</b>") ; 
+               });
+               
+            });
+        </script>
+        <style>
+            div { width: 180px; text-align: center; padding: 5px; border:1px solid #999; border-radius: 5px; margin: 10px auto; margin-bottom: 1px; }
+            ul { list-style: none; display: none; padding: 0; margin: 0; position:absolute;}
+            li { width: 100px; border: 1px solid #999; border-radius: 5px; padding: 5px;  padding-left: 40px; cursor: pointer;  }
+            ul li:hover { background: #BBB;}
+            p { text-align: center;  height: 20px; margin: 10px auto; }
+        </style>
+    </head>
+    <body>
+         <p></p>
+        <div>File</div>
+        <ul id="submenu">
+            <li>Open File</li>
+            <li>Save File</li>
+            <li>Print File</li>
+            <li>Exit</li>
+        </ul>
+       
+        
+    </body>
+</html>

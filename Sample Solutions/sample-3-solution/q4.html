@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        var card = 0 ;
+        var images = [ "day.jpg", "night.jpg", "trinket.jpg", "alley.jpg"] ;
+        var stat = [false, false, false, false] ; 
+        $(function(){
+           $("#canvas div").hover(function(){
+               $(this).css("background-color", "#aaa");
+           }, function(){
+               $(this).css("background-color", "#ccc");
+           }).click(function(e){
+               var id = $(this).attr("id");
+                $("#" + id + " img").attr("src", images[card]).css({ left : e.offsetX, top : e.offsetY}).animate({top:0, left:0, opacity:1}, 500);      
+                $(this).unbind();
+                stat[ id[1] ] = true ;
+                var i=0 ;
+                if ( checkEnd()){
+                    window.setInterval(function(){
+                        $("#c" + i + " img").fadeOut(600) ; 
+                        i++;
+                    }, 700);
+                }
+           });
+           function checkEnd(){
+               for ( i=0; i<4; i++) {
+                   if ( stat[i] == false) return false ;
+               }
+               return true ;
+           }
+           
+           $("#cards").change(function(){
+              card = parseInt($(this).val()) ; 
+              //console.log( card ) ;
+           });
+        
+        });
+    </script>
+    <style type="text/css">
+        #canvas { border:1px solid #aad; background: #ddf; width: 730px; height: 257px; margin: 30px auto ; position:relative; }
+        #canvas div { width:170px; height:237px; position:absolute; top:10px; border:1px solid #aaa; border-radius: 3px; background-color: #ccc;}
+        #c0 { left: 10px; }
+        #c1 { left: 190px;}
+        #c2 { left: 370px;}
+        #c3 { left: 550px;}
+        #altPanel { text-align: center;}
+        img { position: absolute;  z-index:1; opacity:0}
+    </style>
+  </head>
+  <body>
+      <div id="canvas">
+          <div id="c0"><img src="day.jpg" ></div>
+          <div id="c1"><img src="day.jpg" ></div>
+          <div id="c2"><img src="day.jpg" ></div>
+          <div id="c3"><img src="day.jpg" ></div>
+      </div>
+      <div id="altPanel">
+          <select id="cards">
+              <option value="0">Day</option>
+              <option value="1">Night</option>
+              <option value="2">Trinket</option>
+              <option value="3">Alley</option>
+          </select>
+      </div>
+  </body>
+</html>
